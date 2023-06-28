@@ -1,8 +1,12 @@
 let studentList = document.querySelector(".student-list");
+   
+let text = "";
+data.forEach((element)=>{
 
+   let card = createCard(element);
+      studentList.appendChild(card)
 
-
-
+})
 
 
 
@@ -10,18 +14,19 @@ function createCard(student){
 
    let studentItem = document.createElement("li");
 
-   item.classList.add("student-item");
-   item.classList.add("cf");
+   studentItem.classList.add("student-item");
+   studentItem.classList.add("cf");
 
+ 
    
-   let studentDetails = document.querySelector("div");
+   let studentDetails = document.createElement("div");
 
-   studentDetails.classList.add('student-details');
+   studentDetails.className = "student-details";
 
    let image = document.createElement('img');
 
    image.classList.add("avatar");
-   image.src = student.image.medium;
+   image.src = student.picture.medium;
 
    image.alt= "Profile Picture";
 
@@ -47,7 +52,7 @@ function createCard(student){
 
    studentDetails.appendChild(image);
 
-   studentDetails.appendChild(name);
+   studentDetails.appendChild(studentName);
 
    studentDetails.appendChild(email);
 
@@ -55,6 +60,10 @@ function createCard(student){
 
    studentItem.appendChild(joinedDetails);
 
+
    return studentItem;
 
+
+
 }
+
