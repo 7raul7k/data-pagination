@@ -128,10 +128,29 @@ function attachHomePage(){
 
     studentList.innerHTML = "";
 
+    pages.forEach((button) => {
+        button.classList.remove('active');
+    });
+
+  
+
     pages.forEach((page,index)=>{
+
+          
+      
+
         page.addEventListener('click',()=>{
+
+            pages.forEach((button) => {
+                button.classList.remove('active');
+            });
+        
+         
+            page.classList.add('active');
             let pageItems = pagination(data, index);
             attachCardsonPage(studentList, pageItems);
+
+           
         });
     });
 
