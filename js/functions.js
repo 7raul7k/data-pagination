@@ -1,8 +1,9 @@
 
+let studentList = document.querySelector('.student-list');
 
 function attachHomePage(){
 
-    let studentList = document.querySelector(".student-list");
+ 
     
     studentList.innerHTML="";
  
@@ -46,8 +47,6 @@ function attachHomePage(){
     studentItem.classList.add("student-item");
     studentItem.classList.add("cf");
  
-  
-    
     let studentDetails = document.createElement("div");
  
     studentDetails.className = "student-details";
@@ -55,7 +54,7 @@ function attachHomePage(){
     let image = document.createElement('img');
  
     image.classList.add("avatar");
-    image.src = student.picture.medium;
+    image.setAttribute('src',student.picture.medium);
  
     image.alt= "Profile Picture";
  
@@ -122,7 +121,7 @@ function attachHomePage(){
  }
 
  function setupPagination() {
-    let studentList = document.querySelector('.student-list');
+
     let linkList = document.querySelector('.link-list');
     let pages = linkList.querySelectorAll('button');
 
@@ -148,7 +147,7 @@ function attachHomePage(){
          
             page.classList.add('active');
             let pageItems = pagination(data, index);
-            attachCardsonPage(studentList, pageItems);
+            attachCardsonPage(pageItems);
 
            
         });
@@ -158,13 +157,13 @@ function attachHomePage(){
  
 }
 
-function attachCardsonPage(studentList,pageItems){
+function attachCardsonPage(pageItems){
 
-    studentList.innerHTML = ""
+    studentList.innerHTML = "";
 
-    for(let i = 0 ; i < pageItems.length ; i++){
+    for(let item of pageItems){
 
-        let card = createCard(pageItems[i]);
+        let card = createCard(item);
 
         studentList.appendChild(card);
     }
@@ -178,10 +177,60 @@ function attachFirstPage() {
 
     arr.innerHTML = "";
 
-    for(let i = 0; i < pageItems.length; i++) {
-        let card = createCard(pageItems[i]);
+    for(let item of pageItems) {
+        let card = createCard(item);
         arr.appendChild(card);
     }
+}
+
+function findStudents(){
+let input=document.querySelector("#search");
+
+let button= document.querySelector('button')
+
+
+
+input.addEventListener('click',()=>{
+    let arr=data.filter((el)=>el.name.first.toLowerCase().includes(input.value) ||
+el.name.first.toUpperCase().includes(input.value));
+
+
+attachCardsonPage(arr);
+})
+
+
+
+}
+
+function createSearchBar(){
+
+    let searchLabel = document.createElement('label');
+
+    searchLabel.classList = 'student-search';
+
+    let inputSearch = document.createElement('input');
+
+    inputSearch.id = 'search';
+
+    inputSearch.placeholder='Search by name...';
+
+    let button = document.createElement('button');
+
+    button.type = 'button';
+    
+    let image = document.createElement('img');
+
+    image.src = 'img/icn-search.svg';
+    image.alt= 'Search icon';
+
+    button.appendChild(image);
+
+    searchLabel.appendChild(inputSearch);
+    searchLabel.appendChild(button);
+
+    let head = document.querySelector(".header");
+
+    head.appendChild(searchLabel);
 }
 
 

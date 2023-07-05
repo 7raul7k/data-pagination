@@ -6,3 +6,7 @@ setupPagination();
 
 attachFirstPage();
 
+createSearchBar();
+
+findStudents();
+
