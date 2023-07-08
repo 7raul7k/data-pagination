@@ -1,6 +1,16 @@
 
 let studentList = document.querySelector('.student-list');
 
+
+studentList.addEventListener('click', (e) => {
+    let target = e.target.parentNode;
+    if (e.target.matches('.editCard')) {
+        editCard(target);
+    } else if (e.target.matches('.removeCard')) {
+        target.remove();
+    }
+});
+
 function attachHomePage(){
 
  
@@ -75,6 +85,32 @@ function attachHomePage(){
     let date = document.createElement('span');
  
     date.textContent = "Joined " + student.registered.date;
+
+   
+
+    let editButton = document.createElement('button');
+
+    editButton.textContent='Edit ';
+
+    editButton.style.background = 'lightblue';
+
+    editButton.classList.add('editCard')
+
+    editButton.style.width='94%'
+
+    let removeButton = document.createElement('button');
+
+    removeButton.textContent='Remove ';
+
+    removeButton.style.background = 'lightblue';
+
+    removeButton.classList.add('removeCard');
+
+    removeButton.style.width='94%'
+
+  
+
+
  
     joinedDetails.appendChild(date);
  
@@ -88,6 +124,10 @@ function attachHomePage(){
  
     studentItem.appendChild(joinedDetails);
  
+    studentItem.appendChild(editButton);
+
+    studentItem.appendChild(removeButton);
+    
  
     return studentItem;
  }
@@ -232,5 +272,37 @@ function createSearchBar(){
 
     head.appendChild(searchLabel);
 }
+
+function editCard(target){
+    let studentName = target.querySelector('h3');
+    let email = target.querySelector('.email');
+    let editButton = target.querySelector('.editCard');
+
+    if(editButton.textContent === 'Edit '){
+        editButton.textContent = 'Save';
+
+        let inputName = document.createElement('input');
+        inputName.classList.add('inputName');
+        inputName.value = studentName.textContent;
+        studentName.textContent = '';
+        studentName.appendChild(inputName);
+        
+        let inputEmail = document.createElement('input');
+        inputEmail.classList.add('inputEmail');
+        inputEmail.value = email.textContent;
+        email.textContent = '';
+        email.appendChild(inputEmail);
+        
+    } else if(editButton.textContent === 'Save'){
+        editButton.textContent = 'Edit ';
+
+        let newName = studentName.querySelector('input').value;
+        let newEmail = email.querySelector('input').value;
+        
+        studentName.textContent = newName;
+        email.textContent = newEmail;
+    }
+}
+
 
 
