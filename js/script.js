@@ -10,3 +10,7 @@ createSearchBar();
 
 findStudents();
 
+attachAddButton();
+
+
+

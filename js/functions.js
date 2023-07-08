@@ -11,6 +11,9 @@ studentList.addEventListener('click', (e) => {
     }
 });
 
+
+
+
 function attachHomePage(){
 
  
@@ -303,6 +306,86 @@ function editCard(target){
         email.textContent = newEmail;
     }
 }
+
+function attachAddButton(){
+
+    let header = document.querySelector(".header");
+
+    let labelAdd = document.createElement('label');
+
+    labelAdd.classList.add='student-add';
+
+    let inputFirstName = document.createElement('input');
+    inputFirstName.className='inptFirstName';
+    inputFirstName.placeholder="input first name...";
+    let inputLastName =  document.createElement('input');
+    inputLastName.className = 'inptLastName'
+    inputLastName.placeholder='input last name'
+    let inputEmail = document.createElement('input');
+    inputEmail.className='inptEmail';
+    inputEmail.placeholder='input email';
+    let addButton = document.createElement('button');
+
+    addButton.classList.add('add-button');
+
+    addButton.textContent='Add';
+  
+
+    header.appendChild(labelAdd);
+
+    addButton.addEventListener('click', () => {
+
+        let firstName = inputFirstName.value;
+        let lastName = inputLastName.value;
+        let email = inputEmail.value;
+    
+
+        if (firstName.value !== "" && lastName.value !== "" && email.value !== "") {
+         
+            addButtonFunction(firstName, lastName, email);
+    
+        
+          
+        } 
+    });
+
+    labelAdd.appendChild(inputFirstName);
+    labelAdd.appendChild(inputLastName);
+    labelAdd.appendChild(inputEmail);
+    labelAdd.appendChild(addButton);
+
+    
+}
+
+function addButtonFunction(firstName, lastName, email){
+
+    let student =  {
+         name: {
+           first: firstName,
+           last: lastName,
+         },
+         email: email,
+         registered: {
+           date: "02-14-2010",
+           age: 10,
+         },
+         picture: {
+           large: 'https://dummyimage.com/400.jpg',
+           medium: 'https://dummyimage.com/400.jpg',
+           thumbnail: 'https://dummyimage.com/400.jpg',
+         },
+       };
+ 
+    
+     data.push(student);
+ 
+    
+     let card = createCard(student);
+     studentList.appendChild(card);
+ }
+
+
+
 
 
 
